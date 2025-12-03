@@ -1,0 +1,17 @@
+{
+  "status": "init",
+  "scope": "codebase",
+  "type": "frontend",
+  "localEndpoint": "http://localhost:5173/painel",
+  "serverPort": 5173,
+  "executionArgs": {
+    "projectName": "ADMAC",
+    "projectPath": "c:\\Users\\humberto.freitas\\Desktop\\ADMAC",
+    "testIds": [],
+    "additionalInstruction": "Use preview server at http://localhost:5173. Validate painel and editors under preview mode to avoid HMR websockets blocking.",
+    "envs": {
+      "API_KEY": "sk-user-MhDmV3GxAvC8MhAu9LsAiQnisFHQqqx4k49bJF2cS6mc6ReMz8zG2lPFJW52ifZKek6Ana6VZJGLvku1KCbEj-kol2W4epPHJV_cdXiPTwbOnCYUX7MOzTAhFMpSvUIKwtk"
+    }
+  },
+  "proxy": "http://dc74119f-0d0b-44b4-ba48-424a43c500b5:WxoA94G63xV5cIiyIWsjsjztwA7bbPgu@tun.testsprite.com:8080"
+}

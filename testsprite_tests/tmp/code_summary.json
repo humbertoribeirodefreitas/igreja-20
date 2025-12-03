@@ -1,0 +1,104 @@
+{
+  "tech_stack": [
+    "JavaScript",
+    "React",
+    "Vite",
+    "React Router",
+    "Supabase",
+    "Recharts",
+    "Swiper",
+    "Lucide React",
+    "Framer Motion",
+    "ESLint"
+  ],
+  "features": [
+    {
+      "name": "App Routing",
+      "description": "Client-side routing and dynamic routes including protected painel.",
+      "files": [
+        "src/App.jsx",
+        "src/components/ProtectedRoute.jsx",
+        "src/pages/DynamicPage.jsx"
+      ]
+    },
+    {
+      "name": "Painel CMS",
+      "description": "Admin dashboard to edit Home, Footer, Ministries, and manage dynamic pages.",
+      "files": [
+        "src/painel/index.jsx",
+        "src/painel/DashboardLayout.jsx",
+        "src/painel/DashboardCharts.jsx",
+        "src/painel/PageManager.jsx",
+        "src/painel/PageEditor.jsx",
+        "src/painel/HomeEditor.jsx",
+        "src/painel/FooterEditor.jsx",
+        "src/painel/MinistryEditor.jsx",
+        "src/painel/Settings.jsx"
+      ]
+    },
+    {
+      "name": "Supabase Service",
+      "description": "Persistence layer for app content using Supabase table app_content.",
+      "files": [
+        "src/services/supabaseClient.js",
+        "src/services/DatabaseService.js",
+        "src/services/initialData.js",
+        "supabase_schema.sql",
+        ".env"
+      ]
+    },
+    {
+      "name": "Home Page",
+      "description": "Public home page consuming editable content and showing carousels and schedule.",
+      "files": [
+        "src/pages/Home.jsx",
+        "src/components/HeroCarousel.jsx",
+        "src/components/ActivitiesCarousel.jsx",
+        "src/css/Home.css",
+        "src/css/HeroCarousel.css",
+        "src/css/ActivitiesCarousel.css"
+      ]
+    },
+    {
+      "name": "Ministry Pages",
+      "description": "Individual ministry pages reading content from DatabaseService.",
+      "files": [
+        "src/pages/Kids.jsx",
+        "src/pages/Louvor.jsx",
+        "src/pages/JovensPage.jsx",
+        "src/pages/Mulheres.jsx",
+        "src/pages/Lares.jsx",
+        "src/pages/Retiro.jsx",
+        "src/pages/Social.jsx",
+        "src/pages/EDB.jsx",
+        "src/pages/midia.jsx",
+        "src/pages/Intercessão.jsx",
+        "src/pages/missoes.jsx"
+      ]
+    },
+    {
+      "name": "UI Components",
+      "description": "Site-wide components like Header, Footer, MinistryCard, MinistryCarousel.",
+      "files": [
+        "src/components/Header.jsx",
+        "src/components/Footer.jsx",
+        "src/components/MinistryCard.jsx",
+        "src/components/MinistryCarousel.jsx",
+        "src/css/Header.css",
+        "src/css/Footer.css",
+        "src/css/MinistryCard.css",
+        "src/css/MinistryCarousel.css"
+      ]
+    },
+    {
+      "name": "Styling",
+      "description": "Global and page-specific styles.",
+      "files": [
+        "src/css/App.css",
+        "src/index.css",
+        "src/css/Revista.css",
+        "src/css/Dashboard.css"
+      ]
+    }
+  ]
+}

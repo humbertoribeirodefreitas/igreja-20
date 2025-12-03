@@ -1,0 +1,352 @@
+[
+  {
+    "id": "TC001",
+    "title": "Authentication enforcement for /painel routes",
+    "description": "Verify that unauthenticated users are blocked from accessing any route under /painel and redirected to login or blocked from content access.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to navigate to /painel route without isAuthenticated set in localStorage"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user is redirected to login page or access is denied"
+      },
+      {
+        "type": "action",
+        "description": "Set localStorage key isAuthenticated to true"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /painel route"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user is granted access to the painel dashboard"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "HomeEditor saves content and persists to Supabase",
+    "description": "Ensure that editing content in HomeEditor and triggering saveHomeData correctly persists data to Supabase and updates immediately on public-facing site.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in and navigate to /painel/home"
+      },
+      {
+        "type": "action",
+        "description": "Modify homepage content fields within HomeEditor"
+      },
+      {
+        "type": "action",
+        "description": "Trigger saveHomeData to save changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify data is saved in Supabase app_content table under Home key"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to public home page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify homepage displays the updated content immediately"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "FooterEditor content edit and persistence",
+    "description": "Validate editing and saving footer content through FooterEditor correctly updates Supabase and the public site footer.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Authenticate and open /painel/footer"
+      },
+      {
+        "type": "action",
+        "description": "Edit footer text and links in FooterEditor"
+      },
+      {
+        "type": "action",
+        "description": "Use saveFooterData to persist changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify footer content is updated in app_content Supabase table"
+      },
+      {
+        "type": "action",
+        "description": "Visit public-facing site pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the footer reflects the new content instantly"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "MinistryEditor CRUD operations and persistence",
+    "description": "Test creating, editing, deleting ministry content entries via MinistryEditor and persisting via saveMinistry with real-time reflection on public ministry pages.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log into admin painel and navigate to Ministries section"
+      },
+      {
+        "type": "action",
+        "description": "Create a new ministry entry with valid fields"
+      },
+      {
+        "type": "action",
+        "description": "Save new ministry using saveMinistry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify new ministry is persisted in Supabase"
+      },
+      {
+        "type": "action",
+        "description": "Edit existing ministry data and save"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updates reflect immediately in Supabase and on public ministry pages"
+      },
+      {
+        "type": "action",
+        "description": "Delete a ministry entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm deletion removes data from Supabase and it no longer appears publicly"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Dynamic page management: listing, creation, update, deletion",
+    "description": "Validate full CRUD functionality for dynamic pages using getPages, addPage, updatePage, and deletePage with correct persistence and status toggling.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Authenticate and go to Dynamic Pages list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify list displays all pages from Supabase including their status and type"
+      },
+      {
+        "type": "action",
+        "description": "Add a new dynamic page with valid details using addPage"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm new page appears in list and in Supabase"
+      },
+      {
+        "type": "action",
+        "description": "Update the status of a page (e.g. online/offline) via updatePage"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the status change is saved in Supabase and reflected in the admin list"
+      },
+      {
+        "type": "action",
+        "description": "Delete a dynamic page via deletePage"
+      },
+      {
+        "type": "assertion",
+        "description": "Check the page is removed from Supabase and no longer shows in list"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Public-facing site dynamic page rendering based on status and type",
+    "description": "Ensure that the public site fetches and displays dynamic pages correctly filtering by status 'online' and appropriate type.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Publish multiple dynamic pages with varied types and online/offline status"
+      },
+      {
+        "type": "action",
+        "description": "Access the public site URLs corresponding to those pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm only pages with status 'online' are accessible and properly rendered"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify pages filtered by type show correct content and UI"
+      },
+      {
+        "type": "action",
+        "description": "Try to access offline dynamic pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure offline pages return 404 or a not found page"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "LocalStorage key isAuthenticated persistence and behavior on reload",
+    "description": "Test that isAuthenticated key in localStorage is required and respected for session persistence on page reload and route changes.",
+    "category": "security",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in to the painel and confirm isAuthenticated is set in localStorage"
+      },
+      {
+        "type": "action",
+        "description": "Reload the browser and navigate inside painel routes"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure that access remains granted based on localStorage state"
+      },
+      {
+        "type": "action",
+        "description": "Remove or clear isAuthenticated key from localStorage"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to access painel routes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access is blocked after localStorage key removal"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Admin UI responsiveness and cross-browser consistency",
+    "description": "Verify that all admin painel UI components (layouts, navigation, editors) render and function correctly across different screen sizes and major browsers.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Access /painel from desktop browser (Chrome, Firefox, Edge)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify correct layout, navigation, and content editors are rendered"
+      },
+      {
+        "type": "action",
+        "description": "Resize window to tablet and mobile viewport sizes"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm UI components adapt responsively without content cutoff or overlap"
+      },
+      {
+        "type": "action",
+        "description": "Repeat tests on Safari desktop and mobile browsers"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure consistent UI and no critical rendering issues"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Data consistency between frontend display and backend persistence after edits",
+    "description": "Verify that any edits made through the admin editors immediately reflect in the backend Supabase data and on the public website without discrepancies.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Make edits in HomeEditor, FooterEditor, and MinistryEditor sequentially and save"
+      },
+      {
+        "type": "assertion",
+        "description": "Validate data in Supabase app_content table matches the edited content"
+      },
+      {
+        "type": "action",
+        "description": "Visit the public pages corresponding to edited content"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm displayed content on public site matches the backend data exactly"
+      },
+      {
+        "type": "action",
+        "description": "Perform concurrent edits from different authenticated sessions"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify data synchronization and latest saved state is consistent on both frontend and backend"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Error handling when Supabase service is unavailable",
+    "description": "Simulate Supabase service downtime or failures and verify that the admin painel gracefully handles errors during content fetching or saving without crashing.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Disconnect or simulate Supabase fail in DatabaseService"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to load HomeEditor, FooterEditor, MinistryEditor content or dynamic pages list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user sees informative error message indicating failure to load data"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to save content changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify appropriate error notification shows and no unhandled exceptions occur"
+      },
+      {
+        "type": "action",
+        "description": "Restore Supabase service"
+      },
+      {
+        "type": "action",
+        "description": "Retry fetching and saving content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify normal operation resumes without data loss"
+      }
+    ]
+  }
+]
